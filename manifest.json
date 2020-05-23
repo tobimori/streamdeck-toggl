@@ -5,7 +5,12 @@
         "Name": "Toggl", 
         "States": [
           {
-            "Image": "resources/actionDefaultImage",
+            "Image": "resources/actionImageOff",
+            "TitleAlignment": "bottom",
+            "FontSize": "10"
+          },
+          {
+            "Image": "resources/actionImageOn",
             "TitleAlignment": "bottom",
             "FontSize": "10"
           }

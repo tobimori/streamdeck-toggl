@@ -1,5 +1,5 @@
 <p align="center">
-  <h1>Toggl for Elgato Stream Deck</h1>
+  <h1 align="center">Toggl for Elgato Stream Deck</h1>
 </p>
 <p align="center">
   <a href="#">

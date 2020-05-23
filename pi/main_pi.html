@@ -2,27 +2,47 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <title>io.moeritz.streamdeck.toggl.pi</title>
-    <link rel="stylesheet" href="sdpi.css">
-    <script src="main_pi.js"></script>
+  <meta charset="utf-8" />
+  <title>io.moeritz.streamdeck.toggl.pi</title>
+  <link rel="stylesheet" href="sdpi.css">
+  <script src="main_pi.js"></script>
 </head>
 
 <body>
-<div class="sdpi-wrapper hidden">
-    <div class="sdpi-item">
-        <div class="sdpi-item-label">API Token</div>
-        <input class="sdpi-item-value" id="apitoken" value="" onchange="updateAPIToken()" placeholder="Enter your Toggl API Token">
-    </div>
-    <div class="sdpi-item">
-        <div class="sdpi-item-label">Time Entry</div>
-        <input class="sdpi-item-value" id="timeentry" value="" onchange="updateTimeEntry()" placeholder="Enter the activity">
-    </div>
-    <div class="sdpi-item">
-        <button class="sdpi-item-value" onclick="openPage('discord.gg/YWy3UAy')">Discord</button>
-        <button class="sdpi-item-value" onclick="openPage('github.com/tobimori/streamdeck-toggl')">GitHub</button>
-    </div>
-</div>
-</body>
 
+
+<div class="sdpi-wrapper hidden">
+
+  <div class="sdpi-item">
+    <div class="sdpi-item-label">API Token</div>
+    <input class="sdpi-item-value" id="apitoken" value="" placeholder="Private API Token" pattern="[a-z0-9]+" required>
+  </div>
+
+  <div class="sdpi-item">
+    <div class="sdpi-item-label">Time Entry</div>
+    <input class="sdpi-item-value" id="timeentry" value="" placeholder="What are you doing?" required>
+  </div>
+
+  <div class="sdpi-item">
+    <div class="sdpi-item-label">Project ID</div>
+    <input class="sdpi-item-value" id="timeentry" value="" placeholder="Leave empty for no project" pattern="[0-9]+">
+  </div>
+
+  <div class="sdpi-item">
+    <div class="sdpi-item-label">Polling Timeout</div>
+    <input class="sdpi-item-value" id="timeentry" value="3" placeholder="Timeout between polling intervals in seconds" required>
+  </div>
+
+  <div class="sdpi-item">
+    <button class="sdpi-item-value" onclick="openPage('www.toggl.com/app/timer')">Open Toggl</button>
+  </div>
+
+  <div class="sdpi-item">
+    <button class="sdpi-item-value" onclick="openPage('discord.gg/YWy3UAy')">Discord</button>
+    <button class="sdpi-item-value" onclick="openPage('github.com/tobimori/streamdeck-toggl')">GitHub</button>
+  </div>
+</div>
+
+
+</body>
 </html>
