@@ -63,6 +63,7 @@ async function startPolling (context, apiToken) {
         setTitle(context, `${Math.floor((new Date() - new Date(entryData.start)) / 60000)} mins`)
       } else {
         setState(context, 1)
+        setTitle(context)
       }
     })
     await wait(delay)
