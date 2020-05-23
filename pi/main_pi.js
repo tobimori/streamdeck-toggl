@@ -9,18 +9,16 @@ function connectElgatoStreamDeckSocket (inPort, inPropertyInspectorUUID, inRegis
 
   websocket.onopen = function () {
     // WebSocket is connected, register the Property Inspector
-    let json = {
+    websocket.send(JSON.stringify({
       event: inRegisterEvent,
       uuid: inPropertyInspectorUUID
-    }
-    websocket.send(JSON.stringify(json))
+    }))
 
     // Request settings
-    json = {
+    websocket.send(JSON.stringify({
       event: 'getSettings',
       context: uuid
-    }
-    websocket.send(JSON.stringify(json))
+    }))
   }
 
   websocket.onmessage = function (evt) {
@@ -41,31 +39,25 @@ function connectElgatoStreamDeckSocket (inPort, inPropertyInspectorUUID, inRegis
 }
 
 function sendSettings () {
-  if (websocket && (websocket.readyState === 1)) {
-    const payload = {
+  websocket && (websocket.readyState === 1) &&
+  websocket.send(JSON.stringify({
+    event: 'setSettings',
+    context: uuid,
+    payload: {
       apiToken: document.getElementById('apitoken').value,
       activity: document.getElementById('activity').value,
       workspaceId: document.getElementById('wid').value,
       projectId: document.getElementById('pid').value
     }
-    const json = {
-      event: 'setSettings',
-      context: uuid,
-      payload: payload
-    }
-    websocket.send(JSON.stringify(json))
-    console.log(json)
-  }
+  }))
 }
 
 function openPage (site) {
-  if (websocket && (websocket.readyState === 1)) {
-    const json = {
-      event: 'openUrl',
-      payload: {
-        url: 'https://' + site
-      }
+  websocket && (websocket.readyState === 1) &&
+  websocket.send(JSON.stringify({
+    event: 'openUrl',
+    payload: {
+      url: 'https://' + site
     }
-    websocket.send(JSON.stringify(json))
-  }
+  }))
 }

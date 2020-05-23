@@ -14,12 +14,10 @@ function connectElgatoStreamDeckSocket (inPort, inPluginUUID, inRegisterEvent, i
 
   websocket.onopen = function () {
     // WebSocket is connected, register the plugin
-    const json = {
+    websocket.send(JSON.stringify(json = {
       event: inRegisterEvent,
       uuid: inPluginUUID
-    }
-
-    websocket.send(JSON.stringify(json))
+    }))
   }
 
   websocket.onmessage = function (evt) {
@@ -143,41 +141,35 @@ async function getCurrentEntry (apiToken = isRequired()) {
 
 // Set Button State (for Polling)
 function setState (context = isRequired(), state = isRequired()) {
-  if (websocket && (websocket.readyState === 1)) {
-    const json = {
-      event: 'setState',
-      context: context,
-      payload: {
-        state: state
-      }
+  websocket && (websocket.readyState === 1) &&
+  websocket.send(JSON.stringify({
+    event: 'setState',
+    context: context,
+    payload: {
+      state: state
     }
-    websocket.send(JSON.stringify(json))
-  }
+  }))
 }
 
 // Set Button Title (for Polling)
 function setTitle (context = isRequired(), title = '') {
-  if (websocket && (websocket.readyState === 1)) {
-    const json = {
-      event: 'setTitle',
-      context: context,
-      payload: {
-        title: title,
-        target: 'both'
-      }
+  websocket && (websocket.readyState === 1) &&
+  websocket.send(JSON.stringify({
+    event: 'setTitle',
+    context: context,
+    payload: {
+      title: title,
+      target: 'both'
     }
-    websocket.send(JSON.stringify(json))
-  }
+  }))
 }
 
 function showAlert (context = isRequired()) {
-  if (websocket && (websocket.readyState === 1)) {
-    const json = {
-      event: 'showAlert',
-      context: context
-    }
-    websocket.send(JSON.stringify(json))
-  }
+  websocket && (websocket.readyState === 1) &&
+  websocket.send(JSON.stringify({
+    event: 'showAlert',
+    context: context
+  }))
 }
 
 // throw error when required argument is not supplied

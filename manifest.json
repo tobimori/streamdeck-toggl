@@ -25,7 +25,7 @@
     "SDKVersion": 2,
     "Author": "tobimori", 
     "CodePath": "plugin/main.html", 
-    "Description": "Hassle-free time tracking using the Elgato Stream Deck and Toggl", 
+    "Description": "Hassle-free time tracking using the Elgato Stream Deck and Toggl.", 
     "Name": "Toggl", 
     "Icon": "resources/pluginIcon", 
     "PropertyInspectorPath": "pi/main_pi.html",
