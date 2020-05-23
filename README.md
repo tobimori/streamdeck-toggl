@@ -1,5 +1,7 @@
 <p align="center">
-  <h1 align="center">Toggl for Elgato Stream Deck</h1>
+  <a href="#">
+    <img src="resources/readme/GitHubBanner.png" alt="Toggl + Elgato Stream Deck" />
+  </a>
 </p>
 <p align="center">
   <a href="#">
