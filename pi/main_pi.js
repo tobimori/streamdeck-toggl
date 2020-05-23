@@ -15,14 +15,9 @@ function connectElgatoStreamDeckSocket (inPort, inPropertyInspectorUUID, inRegis
     }
     websocket.send(JSON.stringify(json))
 
+    // Request settings
     json = {
       event: 'getSettings',
-      context: uuid
-    }
-    websocket.send(JSON.stringify(json))
-
-    json = {
-      event: 'getGlobalSettings',
       context: uuid
     }
     websocket.send(JSON.stringify(json))
@@ -31,32 +26,30 @@ function connectElgatoStreamDeckSocket (inPort, inPropertyInspectorUUID, inRegis
   websocket.onmessage = function (evt) {
     // Received message from Stream Deck
     const jsonObj = JSON.parse(evt.data)
-    if (jsonObj.event === 'didReceiveGlobalSettings') {
+    if (jsonObj.event === 'didReceiveSettings') {
+      const payload = jsonObj.payload.settings
+
+      if (payload.apiToken) document.getElementById('apitoken').value = payload.apiToken
+      if (payload.activity) document.getElementById('activity').value = payload.activity
+      if (payload.workspaceId) document.getElementById('wid').value = payload.workspaceId
+      if (payload.projectId) document.getElementById('pid').value = payload.projectId
+
       const el = document.querySelector('.sdpi-wrapper')
       el && el.classList.remove('hidden')
     }
   }
 }
 
-function updateSettings () {
+function sendSettings () {
   if (websocket && (websocket.readyState === 1)) {
-    const payload = {}
+    const payload = {
+      apiToken: document.getElementById('apitoken').value,
+      activity: document.getElementById('activity').value,
+      workspaceId: document.getElementById('wid').value,
+      projectId: document.getElementById('pid').value
+    }
     const json = {
       event: 'setSettings',
-      context: uuid,
-      payload: payload
-    }
-    websocket.send(JSON.stringify(json))
-    console.log(json)
-  }
-}
-
-function updateGlobals () {
-  if (websocket && (websocket.readyState === 1)) {
-    const payload = {}
-    payload.makerkey = document.getElementById('makerkey').value
-    const json = {
-      event: 'setGlobalSettings',
       context: uuid,
       payload: payload
     }

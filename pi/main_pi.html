@@ -14,23 +14,26 @@
 <div class="sdpi-wrapper hidden">
 
   <div class="sdpi-item">
-    <div class="sdpi-item-label">API Token</div>
-    <input class="sdpi-item-value" id="apitoken" value="" placeholder="Private API Token" pattern="[a-z0-9]+" required>
+    <div class="sdpi-item-label">Entry Name</div>
+    <input class="sdpi-item-value" id="activity" value="" placeholder="What are you doing?" onchange="sendSettings()">
   </div>
 
   <div class="sdpi-item">
-    <div class="sdpi-item-label">Time Entry</div>
-    <input class="sdpi-item-value" id="timeentry" value="" placeholder="What are you doing?" required>
+    <div class="sdpi-item-label">API Token</div>
+    <input class="sdpi-item-value" id="apitoken" value="" pattern="[a-z0-9]+" placeholder="Enter your Private API Token"
+      onchange="sendSettings()" required>
+  </div>
+
+  <div class="sdpi-item">
+    <div class="sdpi-item-label">Workspace ID</div>
+    <input class="sdpi-item-value" id="wid" value="" placeholder="Enter your Workspace ID" pattern="[0-9]+"
+      onchange="sendSettings()" required>
   </div>
 
   <div class="sdpi-item">
     <div class="sdpi-item-label">Project ID</div>
-    <input class="sdpi-item-value" id="timeentry" value="" placeholder="Leave empty for no project" pattern="[0-9]+">
-  </div>
-
-  <div class="sdpi-item">
-    <div class="sdpi-item-label">Polling Timeout</div>
-    <input class="sdpi-item-value" id="timeentry" value="3" placeholder="Timeout between polling intervals in seconds" required>
+    <input class="sdpi-item-value" id="pid" value="" placeholder="Leave empty for no project" pattern="[0-9]+"
+      onchange="sendSettings()">
   </div>
 
   <div class="sdpi-item">

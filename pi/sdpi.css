@@ -888,10 +888,6 @@ html {
   
   /* CAROUSEL */
   
-  .sdpi-item[type="carousel"]{
-    
-  }
-  
   .sdpi-item.card-carousel-wrapper,
   .sdpi-item > .card-carousel-wrapper {
     padding: 0;
@@ -1009,17 +1005,7 @@ html {
     padding-left: 25px;
     background-position: 4px 0px;
    }
-  ::-webkit-datetime-edit-fields-wrapper { 
-   
-   }
   ::-webkit-datetime-edit-text { padding: 0 0.3em; }
-  ::-webkit-datetime-edit-month-field { }
-  ::-webkit-datetime-edit-day-field {}
-  ::-webkit-datetime-edit-year-field {}
-  ::-webkit-inner-spin-button { 
-   
-    /* display: none; */
-   }
   ::-webkit-calendar-picker-indicator { 
     background: transparent;
     font-size: 17px; 
@@ -1045,37 +1031,7 @@ html {
    min-width: 0;
    overflow: hidden;
   }
-  
-  /*
-  input::-webkit-datetime-edit-fields-wrapper {
-   -webkit-user-modify: read-only !important;
-   display: inline-block;
-   padding: 1px 0;
-   white-space: pre;
-  
-  }
-  */
-  
-  /* 
-  input[type="date"] {
-    background-color: red;
-    outline: none;
-  }
-  
-  input[type="date"]::-webkit-clear-button {
-    font-size: 18px;
-    height: 30px;
-    position: relative;
-  }
-  
-  input[type="date"]::-webkit-inner-spin-button {
-    height: 28px;
-  }
-  
-  input[type="date"]::-webkit-calendar-picker-indicator {
-    font-size: 15px;
-  } */
-  
+ 
   input[type="file"] {
     opacity: 0;
     display: none;
@@ -1102,7 +1058,7 @@ html {
     padding: 0px 4px;
     margin: auto;
     margin-right: 0px;
-    float:right;
+    float: right;
   }
   
   .sdpi-file-label > label:active,
