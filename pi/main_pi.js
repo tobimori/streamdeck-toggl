@@ -38,10 +38,9 @@ function connectElgatoStreamDeckSocket (inPort, inPropertyInspectorUUID, inRegis
   }
 }
 
-function updateEventName () {
+function updateSettings () {
   if (websocket && (websocket.readyState === 1)) {
     const payload = {}
-    payload.eventname = document.getElementById('eventname').value
     const json = {
       event: 'setSettings',
       context: uuid,
@@ -52,7 +51,7 @@ function updateEventName () {
   }
 }
 
-function updateAPIToken () {
+function updateGlobals () {
   if (websocket && (websocket.readyState === 1)) {
     const payload = {}
     payload.makerkey = document.getElementById('makerkey').value

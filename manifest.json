@@ -5,25 +5,27 @@
         "Name": "Toggl", 
         "States": [
           {
-            "Image": "resources/actionImageOff",
+            "Image": "resources/actionImageOn",
+            "Name": "Start Entry",
             "TitleAlignment": "bottom",
             "FontSize": "10"
           },
           {
-            "Image": "resources/actionImageOn",
+            "Image": "resources/actionImageOff",
+            "Name": "Stop Entry",
             "TitleAlignment": "bottom",
             "FontSize": "10"
           }
         ], 
         "SupportedInMultiActions": true,
-        "Tooltip": "Hassle-free time tracking using the Elgato Stream Deck and Toggl.", 
-        "UUID": "de.tobimori.streamdeck.toggl.toggle"
+        "Tooltip": "Hassle-free time tracking using the Elgato Stream Deck and Toggl", 
+        "UUID": "io.moeritz.streamdeck.toggl.toggle"
       }
     ], 
     "SDKVersion": 2,
     "Author": "tobimori", 
     "CodePath": "plugin/main.html", 
-    "Description": "Hassle-free time tracking using the Elgato Stream Deck and Toggl.", 
+    "Description": "Hassle-free time tracking using the Elgato Stream Deck and Toggl", 
     "Name": "Toggl", 
     "Icon": "resources/pluginIcon", 
     "PropertyInspectorPath": "pi/main_pi.html",
