@@ -34,8 +34,8 @@ function connectElgatoStreamDeckSocket (inPort, inPropertyInspectorUUID, inRegis
       if (payload.activity) document.getElementById('activity').value = payload.activity
 
       const apiToken = document.getElementById('apitoken').value
-      document.querySelector('.hiddenAll').classList.remove('hiddenAll')
 
+      document.querySelector('.hiddenAll').classList.remove('hiddenAll')
       apiToken && updateWorkspaces(apiToken).then(e => {
         if (payload.workspaceId) document.getElementById('wid').value = payload.workspaceId
 
@@ -72,7 +72,7 @@ function setAPIToken () {
 }
 
 function setWorkspace () {
-  updateProjects(document.getElementById('apitoken').value, document.getElementById('wid').value)  
+  updateProjects(document.getElementById('apitoken').value, document.getElementById('wid').value)
   sendSettings()
 }
 

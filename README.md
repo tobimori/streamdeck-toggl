@@ -29,14 +29,10 @@ ___
 
 ![](resources/readme/PropertyInspector.png)
 
+* **API Token** is your private API Token you can get from your [Toggl profile](https://www.toggl.com/app/profile). This Token is handled like a password. ***Don't share it***. Required.
 * **Entry Name** describes the activity you want to report. It is not required but strongly recommended.
-* **API Token** is your private API Token you can get from your [Toggl profile](https://www.toggl.com/app/profile). Required.
-* **Workspace ID** is the id of your workspace. You can usually find it in the URL. Required.
-
-![](resources/readme/TogglWorkspaceId.png)
-* **Project ID** is the id of the project you want to assign the task to. You can find it in the URL after clicking on a project in the [Toggl project view](https://www.toggl.com/app/projects/).
-
-![](resources/readme/TogglProjectId.png)
+* **Workspace** is your workspace you start the time entries in. Required.
+* **Project** is the project you want to assign the task to. Leave blank for no project.
 
 # 📞 Help
 
