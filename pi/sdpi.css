@@ -35,10 +35,6 @@ html {
     color: var(--sdpi-color);
   }
   
-  .hidden {
-    display: none;
-  }
-  
   hr, hr2 {
     -webkit-margin-before: 1em;
     -webkit-margin-after: 1em;

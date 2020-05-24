@@ -34,14 +34,15 @@ function connectElgatoStreamDeckSocket (inPort, inPropertyInspectorUUID, inRegis
       if (payload.activity) document.getElementById('activity').value = payload.activity
 
       const apiToken = document.getElementById('apitoken').value
+      document.querySelector('.hiddenAll').classList.remove('hiddenAll')
+
       apiToken && updateWorkspaces(apiToken).then(e => {
         if (payload.workspaceId) document.getElementById('wid').value = payload.workspaceId
 
         updateProjects(apiToken, payload.workspaceId).then(e => {
           if (payload.projectId) document.getElementById('pid').value = payload.projectId
 
-          const el = document.querySelector('.sdpi-wrapper')
-          el && el.classList.remove('hidden')
+          document.getElementById('activityWrapper').classList.remove('hidden')
         })
       })
     }
@@ -66,40 +67,60 @@ function setAPIToken () {
   document.getElementById('wid').innerHTML = ''
   document.getElementById('pid').innerHTML = ''
   updateWorkspaces(document.getElementById('apitoken').value)
+  document.getElementById('workspaceError').classList.remove('hiddenError')
   sendSettings()
 }
 
 function setWorkspace () {
-  updateProjects(document.getElementById('apitoken').value, document.getElementById('wid').value)
+  updateProjects(document.getElementById('apitoken').value, document.getElementById('wid').value)  
   sendSettings()
 }
 
 async function updateProjects (apiToken, workspaceId) {
-  await getProjects(apiToken, workspaceId).then(projectsData => {
-    document.getElementById('pid').innerHTML = '<option value="0"></option>'
-    const selectEl = document.getElementById('pid')
+  try {
+    await getProjects(apiToken, workspaceId).then(projectsData => {
+      document.getElementById('pid').innerHTML = '<option value="0"></option>'
+      document.getElementById('workspaceError').classList.add('hiddenError')
+      document.getElementById('projectWrapper').classList.remove('hidden')
+      const selectEl = document.getElementById('pid')
 
-    for (projectNum in projectsData) {
-      const optionEl = document.createElement('option')
-      optionEl.innerText = projectsData[projectNum].name
-      optionEl.value = projectsData[projectNum].id.toString()
-      selectEl.append(optionEl)
-    }
-  })
+      for (projectNum in projectsData) {
+        const optionEl = document.createElement('option')
+        optionEl.innerText = projectsData[projectNum].name
+        optionEl.value = projectsData[projectNum].id.toString()
+        selectEl.append(optionEl)
+      }
+    })
+  } catch (e) {
+    document.getElementById('projectWrapper').classList.add('hidden')
+    document.getElementById('workspaceError').classList.remove('hiddenError')
+  }
 }
 
 async function updateWorkspaces (apiToken) {
-  await getWorkspaces(apiToken).then(workspaceData => {
-    document.getElementById('wid').innerHTML = ''
-    const selectEl = document.getElementById('wid')
+  try {
+    await getWorkspaces(apiToken).then(workspaceData => {
+      document.getElementById('wid').innerHTML = '<option value="0"></option>'
+      document.getElementById('error').classList.add('hiddenError')
+      document.getElementById('activityWrapper').classList.remove('hidden')
+      document.getElementById('workspaceWrapper').classList.remove('hidden')
+      const selectEl = document.getElementById('wid')
 
-    for (ws in workspaceData) {
-      const optionEl = document.createElement('option')
-      optionEl.innerText = workspaceData[ws].name
-      optionEl.value = workspaceData[ws].id.toString()
-      selectEl.append(optionEl)
-    }
-  })
+      for (ws in workspaceData) {
+        const optionEl = document.createElement('option')
+        optionEl.innerText = workspaceData[ws].name
+        optionEl.value = workspaceData[ws].id.toString()
+        selectEl.append(optionEl)
+      }
+    })
+  } catch (e) {
+    document.getElementById('error').classList.remove('hiddenError')
+    document.getElementById('workspaceWrapper').classList.add('hidden')
+    document.getElementById('activityWrapper').classList.add('hidden')
+    document.getElementById('projectWrapper').classList.add('hidden')
+    document.getElementById('workspaceError').classList.add('hiddenError')
+    console.log(e)
+  }
 }
 
 async function getProjects (apiToken, workspaceId) {

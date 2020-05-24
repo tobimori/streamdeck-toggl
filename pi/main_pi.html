@@ -6,25 +6,42 @@
   <title>io.moeritz.streamdeck.toggl.pi</title>
   <link rel="stylesheet" href="sdpi.css">
   <script src="main_pi.js"></script>
+  <style>
+    .hidden, .hiddenError, .hiddenAll {
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="sdpi-wrapper hidden">
+  <div class="sdpi-wrapper hiddenAll">
     <div class="sdpi-item">
+      <div class="sdpi-item-label">API Token</div>
+      <input class="sdpi-item-value" id="apitoken" value="" pattern="[a-z0-9]+" placeholder="Enter your Private API Token"
+        onchange="setAPIToken()" required>
+    </div>
+    <div class="sdpi-item hiddenError" id="error">
+      <details class="message caution">
+        <summary>API Token is invalid!</summary>
+      </details>
+    </div>
+    <hr>
+    <div class="sdpi-item invalidHidden hidden" id="activityWrapper">
       <div class="sdpi-item-label">Entry Name</div>
       <input class="sdpi-item-value" id="activity" value="" placeholder="What are you doing?" onchange="sendSettings()">
     </div>
-    <div class="sdpi-item">
-      <div class="sdpi-item-label">API Token</div>
-      <input class="sdpi-item-value" id="apitoken" value="" pattern="[a-z0-9]+"
-        placeholder="Enter your Private API Token" onchange="setAPIToken()" required>
-    </div>
-    <div class="sdpi-item">
+    <div class="sdpi-item invalidHidden hidden" id="workspaceWrapper">
       <div class="sdpi-item-label">Workspace</div>
       <select class="sdpi-item-value select" id="wid" onchange="setWorkspace()" required>
+        <option value="0"></option>
       </select>
     </div>
-    <div class="sdpi-item">
+    <div class="sdpi-item hiddenError" id="workspaceError">
+      <details class="message caution">
+        <summary>Please select a workspace!</summary>
+      </details>
+    </div>
+    <div class="sdpi-item invalidHidden hidden" id="projectWrapper">
       <div class="sdpi-item-label">Project</div>
       <select class="sdpi-item-value select" id="pid" onchange="sendSettings()">
         <option value="0"></option>
@@ -34,8 +51,8 @@
       <details class="message info">
         <summary class="sdpi-item-value">
           <div class="sdpi-item-child"><a onclick="openPage('www.toggl.com/app/timer')">Open Toggl</a></div>
-          <div class="sdpi-item-child" style="margin-top: -6px"><a onclick="openPage('www.toggl.com/app/profile')">Get API Token</a></div>
-          <div class="sdpi-item-child" style="margin-top: -6px"><a onclick="openPage('discord.gg/YWy3UAy')">Discord</a></div>
+          <div class="sdpi-item-child" style="margin-top: -6px"><a onclick="openPage('www.toggl.com/app/profile')">Get Toggl API Token</a></div>
+          <div class="sdpi-item-child" style="margin-top: -2px"><a onclick="openPage('discord.gg/YWy3UAy')">Discord</a></div>
           <div class="sdpi-item-child" style="margin-top: -6px"><a onclick="openPage('github.com/tobimori/streamdeck-toggl')">GitHub</a></div>
         </summary>
       </details>
