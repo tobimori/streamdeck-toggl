@@ -35,7 +35,7 @@ function connectElgatoStreamDeckSocket (inPort, inPluginUUID, inRegisterEvent, i
         toggle(context, payload.settings)
         break
       case 'willAppear':
-        !initialized && initPolling()
+        !pollingInitialized && initPolling()
         !payload.settings.apiToken && showAlert(context)
         !payload.isInMultiAction && payload.settings.apiToken && startPolling(context, payload.settings.apiToken)
         break
