@@ -3,8 +3,8 @@ const togglBaseUrl = 'https://www.toggl.com/api/v8'
 
 let websocket = null
 let pluginUUID = null
-const currentlyPolling = []
-const delay = 10000
+const currentlyPolling = {}
+let pollingInitialized = false
 
 function connectElgatoStreamDeckSocket (inPort, inPluginUUID, inRegisterEvent, inInfo) {
   pluginUUID = inPluginUUID
@@ -28,43 +28,53 @@ function connectElgatoStreamDeckSocket (inPort, inPluginUUID, inRegisterEvent, i
 
     switch (event) {
       case 'keyDown':
-        stopPolling(context)
+        stopPolling(context, payload.settings.apiToken)
         !payload.settings.apiToken && showAlert(context)
         !payload.settings.workspaceId && showAlert(context)
         !payload.isInMultiAction && payload.settings.apiToken && startPolling(context, payload.settings.apiToken)
         toggle(context, payload.settings)
         break
       case 'willAppear':
+        !initialized && initPolling()
         !payload.settings.apiToken && showAlert(context)
         !payload.isInMultiAction && payload.settings.apiToken && startPolling(context, payload.settings.apiToken)
         break
       case 'willDisappear':
-        !payload.isInMultiAction && stopPolling(context)
+        !payload.isInMultiAction && stopPolling(context, payload.settings.apiToken)
         break
     }
   }
 }
 
 // Polling
-async function stopPolling (context) {
-  removeFromArray(currentlyPolling, context)
+async function stopPolling (context, apiToken) {
+  removeFromArray(currentlyPolling[apiToken], context)
   setTitle(context)
 }
 
-async function startPolling (context, apiToken) {
-  currentlyPolling.push(context)
+function startPolling (context, apiToken) {
+  if (!currentlyPolling[apiToken]) currentlyPolling[apiToken] = []
+  currentlyPolling[apiToken].push(context)
+}
 
-  while (currentlyPolling.includes(context)) { // eslint-disable-line no-unmodified-loop-condition
-    await getCurrentEntry(apiToken).then(entryData => {
-      if (entryData) {
-        setState(context, 0)
-        setTitle(context, `${Math.floor((new Date() - new Date(entryData.start)) / 60000)} mins`)
-      } else {
-        setState(context, 1)
-        setTitle(context)
-      }
-    })
-    await wait(delay)
+async function initPolling () {
+  pollingInitialized = true
+  while (pollingInitialized) { // eslint-disable-line no-unmodified-loop-condition
+    for (apiToken in currentlyPolling) {
+      await getCurrentEntry(apiToken).then(entryData => {
+        for (cNum in currentlyPolling[apiToken]) {
+          const context = currentlyPolling[apiToken][cNum]
+          if (entryData) {
+            setState(context, 0)
+            setTitle(context, `${Math.floor((new Date() - new Date(entryData.start)) / 60000)} mins`)
+          } else {
+            setState(context, 1)
+            setTitle(context)
+          }
+        }
+      })
+    }
+    await wait()
   }
 }
 
