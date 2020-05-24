@@ -16,6 +16,9 @@
   <a href="https://discord.gg/YWy3UAy">
     <img src="https://img.shields.io/discord/713669570929623150?label=Meet%20On%20Discord&logo=discord&logoColor=white&style=flat-square" alt="Meet on Discord" />
   </a>
+  <a href="#">
+    <img src="https://img.shields.io/endpoint?logo=toggl&style=flat-square&url=https%3A%2F%2Ftoggl.api.moeritz.io%2Fapi%2Fshields%2F160872754" alt="Total Time Tracked Working On streamdeck-toggl">
+  </a>
 </p>
 
 <p align="center">
