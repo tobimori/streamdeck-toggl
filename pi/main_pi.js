@@ -33,10 +33,11 @@ function connectElgatoStreamDeckSocket (inPort, inPropertyInspectorUUID, inRegis
       if (payload.apiToken) document.getElementById('apitoken').value = payload.apiToken
       if (payload.activity) document.getElementById('activity').value = payload.activity
 
-      updateWorkspaces(document.getElementById('apitoken').value).then(e => {
+      const apiToken = document.getElementById('apitoken').value
+      apiToken && updateWorkspaces(apiToken).then(e => {
         if (payload.workspaceId) document.getElementById('wid').value = payload.workspaceId
 
-        updateProjects(document.getElementById('apitoken').value, payload.workspaceId).then(e => {
+        updateProjects(apiToken, payload.workspaceId).then(e => {
           if (payload.projectId) document.getElementById('pid').value = payload.projectId
 
           const el = document.querySelector('.sdpi-wrapper')
