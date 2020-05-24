@@ -6,13 +6,11 @@
         "States": [
           {
             "Image": "resources/actionImageOn",
-            "Name": "Start Entry",
             "TitleAlignment": "bottom",
             "FontSize": "10"
           },
           {
             "Image": "resources/actionImageOff",
-            "Name": "Stop Entry",
             "TitleAlignment": "bottom",
             "FontSize": "10"
           }
@@ -30,7 +28,7 @@
     "Icon": "resources/pluginIcon", 
     "PropertyInspectorPath": "pi/main_pi.html",
     "URL": "https://moeritz.io", 
-    "Version": "1.0.0",
+    "Version": "1.1.0",
     "OS": [
       {
           "Platform": "mac", 
