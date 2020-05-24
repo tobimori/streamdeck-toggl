@@ -74,7 +74,7 @@ async function initPolling () {
         }
       })
     }
-    await wait()
+    await wait(currentlyPolling.length * 3500)
   }
 }
 
