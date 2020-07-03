@@ -7,7 +7,8 @@ let uuid = null
 function connectElgatoStreamDeckSocket (inPort, inPropertyInspectorUUID, inRegisterEvent, inInfo, inActionInfo) {
   uuid = inPropertyInspectorUUID
 
-  websocket = new WebSocket('ws://localhost:' + inPort)
+  // Open the web socket (use 127.0.0.1 vs localhost because windows is "slow" resolving 'localhost')
+  websocket = new WebSocket('ws://127.0.0.1:' + inPort)
 
   websocket.onopen = function () {
     // WebSocket is connected, register the Property Inspector
@@ -31,6 +32,7 @@ function connectElgatoStreamDeckSocket (inPort, inPropertyInspectorUUID, inRegis
       const payload = jsonObj.payload.settings
 
       if (payload.apiToken) document.getElementById('apitoken').value = payload.apiToken
+      if (payload.label) document.getElementById('label').value = payload.label
       if (payload.activity) document.getElementById('activity').value = payload.activity
 
       const apiToken = document.getElementById('apitoken').value
@@ -56,6 +58,7 @@ function sendSettings () {
     context: uuid,
     payload: {
       apiToken: document.getElementById('apitoken').value,
+      label: document.getElementById('label').value,
       activity: document.getElementById('activity').value,
       workspaceId: document.getElementById('wid').value,
       projectId: document.getElementById('pid').value
@@ -102,6 +105,7 @@ async function updateWorkspaces (apiToken) {
     await getWorkspaces(apiToken).then(workspaceData => {
       document.getElementById('wid').innerHTML = '<option value="0"></option>'
       document.getElementById('error').classList.add('hiddenError')
+      document.getElementById('labelWrapper').classList.remove('hidden')
       document.getElementById('activityWrapper').classList.remove('hidden')
       document.getElementById('workspaceWrapper').classList.remove('hidden')
       const selectEl = document.getElementById('wid')
@@ -116,6 +120,7 @@ async function updateWorkspaces (apiToken) {
   } catch (e) {
     document.getElementById('error').classList.remove('hiddenError')
     document.getElementById('workspaceWrapper').classList.add('hidden')
+    document.getElementById('labelWrapper').classList.add('hidden')
     document.getElementById('activityWrapper').classList.add('hidden')
     document.getElementById('projectWrapper').classList.add('hidden')
     document.getElementById('workspaceError').classList.add('hiddenError')
