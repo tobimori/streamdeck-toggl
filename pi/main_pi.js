@@ -34,6 +34,7 @@ function connectElgatoStreamDeckSocket (inPort, inPropertyInspectorUUID, inRegis
       if (payload.apiToken) document.getElementById('apitoken').value = payload.apiToken
       if (payload.label) document.getElementById('label').value = payload.label
       if (payload.activity) document.getElementById('activity').value = payload.activity
+      document.getElementById('billable').value = payload.billableToggle ? 1 : 0
 
       const apiToken = document.getElementById('apitoken').value
 
@@ -61,7 +62,8 @@ function sendSettings () {
       label: document.getElementById('label').value,
       activity: document.getElementById('activity').value,
       workspaceId: document.getElementById('wid').value,
-      projectId: document.getElementById('pid').value
+      projectId: document.getElementById('pid').value,
+      billableToggle: document.getElementById('billable').value == 1 ?  true : false
     }
   }))
 }
@@ -85,6 +87,7 @@ async function updateProjects (apiToken, workspaceId) {
       document.getElementById('pid').innerHTML = '<option value="0"></option>'
       document.getElementById('workspaceError').classList.add('hiddenError')
       document.getElementById('projectWrapper').classList.remove('hidden')
+      document.getElementById('billableWrapper').classList.remove('hidden')
       const selectEl = document.getElementById('pid')
 
       for (projectNum in projectsData) {
@@ -96,6 +99,7 @@ async function updateProjects (apiToken, workspaceId) {
     })
   } catch (e) {
     document.getElementById('projectWrapper').classList.add('hidden')
+    document.getElementById('billableWrapper').classList.add('hidden')
     document.getElementById('workspaceError').classList.remove('hiddenError')
   }
 }
