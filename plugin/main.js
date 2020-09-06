@@ -121,25 +121,25 @@ function leadingZero(val)
 }
 
 async function toggle(context, settings) {
-  const { apiToken, activity, projectId, workspaceId, billableToggle } = settings
+  const { apiToken, activity, projectId, workspaceId, billableToggle, tags } = settings
 
   getCurrentEntry(apiToken).then(entryData => {
     if (!entryData) {
       //Not running? Start a new one
-      startEntry(apiToken, activity, workspaceId, projectId, billableToggle).then(v=>refreshButtons())
+      startEntry(apiToken, activity, workspaceId, projectId, billableToggle, tags).then(v=>refreshButtons())
     } else if (entryData.wid == workspaceId && entryData.pid == projectId && entryData.description == activity) {
       //The one running is "this one" -- toggle to stop
       stopEntry(apiToken, entryData.id).then(v=>refreshButtons())
     } else {
       //Just start the new one, old one will stop, it's toggl.
-      startEntry(apiToken, activity, workspaceId, projectId, billableToggle).then(v=>refreshButtons())
+      startEntry(apiToken, activity, workspaceId, projectId, billableToggle, tags).then(v=>refreshButtons())
     }
   })
 }
 
 // Toggl API Helpers
 
-function startEntry(apiToken = isRequired(), activity = 'Time Entry created by Toggl for Stream Deck', workspaceId = 0, projectId = 0, billableToggle = false) {
+function startEntry(apiToken = isRequired(), activity = 'Time Entry created by Toggl for Stream Deck', workspaceId = 0, projectId = 0, billableToggle = false, tags = []) {
   return fetch(
     `${togglBaseUrl}/time_entries/start`, {
     method: 'POST',
@@ -152,7 +152,8 @@ function startEntry(apiToken = isRequired(), activity = 'Time Entry created by T
         description: activity,
         wid: workspaceId,
         pid: projectId,
-	billable: billableToggle,
+        billable: billableToggle,
+        tags: tags,
         created_with: 'Stream Deck'
       }
     })
