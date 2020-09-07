@@ -1,6 +1,6 @@
 <p align="center">
   <a href="#">
-    <img src="resources/readme/GitHubBanner.png" alt="Toggl + Elgato Stream Deck" />
+    <img src="resources/readme/GitHubBanner.png" alt="Toggl Track + Elgato Stream Deck" />
   </a>
 </p>
 <p align="center">
@@ -26,7 +26,7 @@
 
 <p align="center">
   Hassle-free time tracking using the <a href="https://www.elgato.com/en/gaming/stream-deck">Elgato Stream Deck</a> 
-  and <a href="https://toggl.com/">Toggl</a>.
+  and <a href="https://toggl.com/track/">Toggl Track</a>.
 </p>
 
 ___
