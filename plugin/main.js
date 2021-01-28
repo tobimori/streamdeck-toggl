@@ -86,8 +86,8 @@ function refreshButtons() {
         
         if (entryData //Does button match the active timer? 
             && entryData.wid == settings.workspaceId 
-            && entryData.pid == settings.projectId 
-            && entryData.description == settings.activity) {
+            && (!settings.projectId || settings.projectId === "0" || entryData.pid == settings.projectId)
+            && (!settings.activity || entryData.description == settings.activity)) {
           setState(context, 0)
           setTitle(context, `${formatElapsed(entryData.duration)}\n\n\n${settings.label}`)
         } else { //if not, make sure it's 'off'
@@ -127,7 +127,9 @@ async function toggle(context, settings) {
     if (!entryData) {
       //Not running? Start a new one
       startEntry(apiToken, activity, workspaceId, projectId, billableToggle).then(v=>refreshButtons())
-    } else if (entryData.wid == workspaceId && entryData.pid == projectId && entryData.description == activity) {
+    } else if (entryData.wid == workspaceId 
+        && (!projectId || projectId === "0" || entryData.pid == projectId) 
+        && (!activity || entryData.description == activity)) {
       //The one running is "this one" -- toggle to stop
       stopEntry(apiToken, entryData.id).then(v=>refreshButtons())
     } else {
