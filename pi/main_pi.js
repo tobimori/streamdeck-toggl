@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars, no-undef */
-const togglBaseUrl = 'https://www.toggl.com/api/v8'
+const togglBaseUrl = 'https://api.track.toggl.com/api/v8'
 
 let websocket = null
 let uuid = null
