@@ -1,0 +1,30 @@
+{
+  "name": "streamdeck-toggl",
+  "version": "2.0.0",
+  "description": "Hassle-free time tracking using the Elgato Stream Deck and Toggl Track",
+  "author": "Tobias Möritz",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently --names \"PLUGIN,PI\" -c \"bgBlue.bold,bgMagenta.bold\" \"parcel watch plugin/index.html -d dist/plugin/  --no-hmr --public-url ./  --log-level 4 --global connectElgatoStreamDeckSocket\" \"parcel watch pi/index.html -d dist/pi/  --public-url ./ --log-level 4  --no-hmr --global connectElgatoStreamDeckSocket\" --kill-others"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.14",
+    "@babel/preset-react": "^7.13.13",
+    "@types/node": "^14.14.37",
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.3",
+    "concurrently": "^6.0.0",
+    "parcel-bundler": "^1.12.5",
+    "ts-standard": "^10.0.0",
+    "typescript": "^4.2.3"
+  },
+  "standard": {
+    "globals": [
+      "WebSocket"
+    ]
+  }
+}
