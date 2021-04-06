@@ -3,6 +3,7 @@
     <img src="resources/readme/GitHubBanner.png" alt="Toggl Track + Elgato Stream Deck" />
   </a>
 </p>
+
 <p align="center">
   <a href="#">
     <img src="https://img.shields.io/badge/macOS-✓-success?logo=apple&style=flat-square&logoColor=white" alt="macOS supported" />
@@ -24,26 +25,28 @@
   </a>
 </p>
 
-<p align="center">
-  Hassle-free time tracking using the <a href="https://www.elgato.com/en/gaming/stream-deck">Elgato Stream Deck</a> 
-  and <a href="https://toggl.com/track/">Toggl Track</a>.
-</p>
-
 ___
 
-# ✏️ Setup
+# Hassle-free time tracking using the [Elgato Stream Deck](https://www.elgato.com/en/gaming/stream-deck) and [Toggl Track](https://toggl.com/track/)
 
-![](resources/readme/PropertyInspector.png)
+## ✏️ Setup
 
+Just search for the Action "Toggl" within the Stream Deck app and install it. There is a button called "Toggl" available in section "Custom".
+
+![PropertyInspector](resources/readme/PropertyInspector.png)
+
+* **Title** is a default Stream Deck property available for every button in Stream Deck. You should leave it empty (see Button Label).
 * **API Token** is your private API Token you can get from your [Toggl profile](https://track.toggl.com/profile). This Token is handled like a password. ***Don't share it***. Required.
+* **Button Label** is used instead of *Title*. If the tracker isn't running, the Label is shown on the button. If the tracker is running the elapsed time is shown additionally. If *Title* is set, it will override *Button Label*.
 * **Entry Name** describes the activity you want to report. It is not required but strongly recommended.
 * **Workspace** is your workspace you start the time entries in. Required.
-* **Project** is the project you want to assign the task to. Leave blank for no project.
+* **Project** is the project you want to assign the task to. Leave blank for no project. New projects can be added in Toggl.
+* **Billable** sets Toggl's billable flag (for Toggl paid plans only).
 
-# 📞 Help
+## 📞 Help
 
 Feel free to ask your questions on [my Discord Server](https://discord.gg/YWy3UAy). Please use GitHub Issues for reporting bugs and requesting new features.
 
-# 📄 License
+## 📄 License
 
 streamdeck-toggl is licensed under the [MIT License](LICENSE).
