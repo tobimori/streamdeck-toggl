@@ -1,4 +1,8 @@
-<h1 align="center">streamdeck-toggl v2</h1>
+<p align="center">
+  <h1 aria-label="Toggl Track + Elgato Stream Deck" >
+    <img src="resources/GitHubBanner.png" alt="Toggl Track + Elgato Stream Deck" />
+  </h1>
+</p>
 <p align="center">
   <a href="#">
     <img src="https://img.shields.io/badge/macOS-✓-success?logo=apple&style=flat-square&logoColor=white" alt="macOS supported" />
