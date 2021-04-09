@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
+
 import StreamDeckClient from '../../../plugin/ts/sd-client'
+import { SettingsContext } from '../settingsCtx'
+import { ToggleInspector, MetaBlock } from '.'
 
 interface IProps {
   client?: StreamDeckClient
@@ -9,8 +12,8 @@ interface IProps {
     device: string
     payload: {
       coordinates: {
-        column: 1
-        row: 2
+        column: number
+        row: number
       }
       settings: Record<string, unknown>
     }
@@ -18,42 +21,45 @@ interface IProps {
   globalSettings: Record<string, unknown>
 }
 
-const PropertyInspector: React.FC<IProps> = ({ client }: IProps) => {
+const PropertyInspector: React.FC<IProps> = ({ client, info }: IProps) => {
+  const { state, update } = useContext(SettingsContext)
+
+  useEffect(() => {
+    update({
+      ...state,
+      sdClient: client,
+      actionType: info.action,
+      billable: info.payload.settings.billable
+    })
+  }, [client, info])
+
+  useEffect(() => {
+    console.log('state changed')
+    if (state.sdClient !== undefined) {
+      state.sdClient.setSettings({
+        settings: {
+          billable: state.billable === true || false
+        }
+      })
+    }
+  }, [state])
+
+  const renderPI = (action: string): any => { // fix return type
+    switch (action) {
+      case 'io.moeritz.streamdeck.toggl.toggle':
+        return <ToggleInspector />
+    }
+  }
+
   if (client !== undefined) {
     return (
       <>
-        <div className='sdpi-item invalidHidden' id='billableWrapper'>
-          <div className='sdpi-item-label'>Billable</div>
-          <div className='sdpi-item-value' id='billable'>
-            <span className='sdpi-item-child'>
-              <input id='billableOff' type='radio' name='rdio' checked />
-              <label htmlFor='billableOff' className='sdpi-item-label'><span />No</label>
-            </span>
-            <span className='sdpi-item-child'>
-              <input id='billableOn' type='radio' value='off' name='rdio' />
-              <label htmlFor='billableOn' className='sdpi-item-label'><span />Yes (Paid Plans only)</label>
-            </span>
-          </div>
-        </div>
-        {/* info/meta block */}
-        <div className='sdpi-item'>
-          <details className='message info'>
-            <summary className='sdpi-item-value'>
-              <div className='sdpi-item-child'><a onClick={() => client.openUrl({ url: 'track.toggl.com/timer' })}>Open Toggl</a></div>
-              <div className='sdpi-item-child' style={{ marginTop: -2 }}><a onClick={() => client.openUrl({ url: 'discord.gg/YWy3UAy' })}>Discord</a></div>
-              <div className='sdpi-item-child' style={{ marginTop: -6 }}><a onClick={() => client.openUrl({ url: 'github.com/tobimori/streamdeck-toggl' })}>GitHub</a></div>
-              <div className='sdpi-item-child' style={{ marginTop: -6 }}><a onClick={() => client.openUrl({ url: 'ko-fi.com/tobimori' })}>Ko-fi</a></div>
-            </summary>
-          </details>
-        </div>
-        <div className='sdpi-item'>
-          <details className='message'>
-            <summary style={{ marginTop: -10 }}>A project by <a onClick={() => client.openUrl({ url: 'moeritz.io' })}>tobimori</a></summary>
-          </details>
-        </div>
+        {renderPI(info.action)}
+        <MetaBlock />
       </>
     )
   }
+
   return null
 }
 

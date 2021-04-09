@@ -1,8 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import StreamDeckClient from '../../plugin/ts/sd-client'
 import { PropertyInspector } from './components'
+import { SettingsProvider } from './settingsCtx'
+
+import StreamDeckClient from '../../plugin/ts/sd-client'
 
 function connectElgatoStreamDeckSocket (
   inPort: string,
@@ -37,7 +39,9 @@ function connectElgatoStreamDeckSocket (
       const globalSettings = payload.settings
 
       ReactDOM.render(
-        <PropertyInspector client={client} info={JSON.parse(inActionInfo)} globalSettings={globalSettings} />,
+        <SettingsProvider>
+          <PropertyInspector client={client} info={JSON.parse(inActionInfo)} globalSettings={globalSettings} />
+        </SettingsProvider>,
         document.getElementById('sdpi')
       )
     }
