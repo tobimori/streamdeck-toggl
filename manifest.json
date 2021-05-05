@@ -70,7 +70,7 @@
   "Icon": "resources/pluginIcon",
   "PropertyInspectorPath": "dist/pi/index.html",
   "URL": "https://moeritz.io",
-  "Version": "2.0.0-alpha1",
+  "Version": "2.0.0",
   "OS": [
     {
       "Platform": "mac",
