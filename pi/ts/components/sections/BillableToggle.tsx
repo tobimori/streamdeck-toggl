@@ -8,27 +8,23 @@ const BillableToggle: React.FC = () => {
     update({ ...state, billable: billable })
   }
 
-  if (state.actionType === 'io.moeritz.streamdeck.toggl.toggle' || state.actionType === 'io.moeritz.streamdeck.toggl.start') {
-    return (
-      <>
-        <div className='sdpi-item invalidHidden'>
-          <div className='sdpi-item-label'>Billable</div>
-          <div className='sdpi-item-value'>
-            <span className='sdpi-item-child'>
-              <input id='billableOff' type='radio' name='rdio' onChange={() => handleChange(false)} checked={state.billable === false || state.billable === undefined} />
-              <label htmlFor='billableOff' className='sdpi-item-label'><span />No</label>
-            </span>
-            <span className='sdpi-item-child'>
-              <input id='billableOn' type='radio' value='off' name='rdio' onChange={() => handleChange(true)} checked={state.billable} />
-              <label htmlFor='billableOn' className='sdpi-item-label'><span />Yes (Paid Plans only)</label>
-            </span>
-          </div>
+  return (
+    <>
+      <div className='sdpi-item invalidHidden'>
+        <div className='sdpi-item-label'>Billable</div>
+        <div className='sdpi-item-value'>
+          <span className='sdpi-item-child'>
+            <input id='billableOff' type='radio' name='rdio' onChange={() => handleChange(false)} checked={state.billable === false || state.billable === undefined} />
+            <label htmlFor='billableOff' className='sdpi-item-label'><span />No</label>
+          </span>
+          <span className='sdpi-item-child'>
+            <input id='billableOn' type='radio' value='off' name='rdio' onChange={() => handleChange(true)} checked={state.billable} />
+            <label htmlFor='billableOn' className='sdpi-item-label'><span />Yes (Paid Plans only)</label>
+          </span>
         </div>
-      </>
-    )
-  }
-
-  return null
+      </div>
+    </>
+  )
 }
 
 export default BillableToggle

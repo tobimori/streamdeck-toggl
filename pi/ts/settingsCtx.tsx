@@ -4,11 +4,19 @@ import StreamDeckClient from '../../plugin/ts/sd-client'
 
 export const defaultContext = {}
 
+export type IAccounts = Record<string, {
+  name: string
+  id: string
+  apiToken: string
+}>
+
 export interface IContext {
   togglClient?: TogglClient
   sdClient?: StreamDeckClient
+  accounts?: IAccounts
+  selectedAccount?: string | number // done
   actionType?: string
-  entryName?: string
+  entryName?: string // done
   buttonLabel?: string
   projectId?: string
   workspaceId?: string

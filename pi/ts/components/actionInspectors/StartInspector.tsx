@@ -1,7 +1,7 @@
 import React from 'react'
 import { BillableToggle, EntryName, ProjectSelect, WorkspaceSelect } from '..'
 
-const ToggleInspector: React.FC = () => {
+const StartInspector: React.FC = () => {
   return (
     <>
       <EntryName />
@@ -12,4 +12,4 @@ const ToggleInspector: React.FC = () => {
   )
 }
 
-export default ToggleInspector
+export default StartInspector
