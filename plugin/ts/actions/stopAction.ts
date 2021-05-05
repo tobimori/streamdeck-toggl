@@ -3,16 +3,20 @@ import TogglClient from '../toggl-client'
 
 class StopAction {
   private readonly sdClient: StreamDeckClient
-  private readonly togglClient: TogglClient
+  public togglId: string
+  public togglClient: TogglClient
 
   public constructor ({
     sdClient,
+    togglId,
     togglClient
   }: {
     sdClient: StreamDeckClient
+    togglId: string
     togglClient: TogglClient
   }) {
     this.sdClient = sdClient
+    this.togglId = togglId
     this.togglClient = togglClient
   }
 

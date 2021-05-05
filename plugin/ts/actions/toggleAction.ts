@@ -3,16 +3,20 @@ import TogglClient from '../toggl-client'
 
 class ToggleAction {
   private readonly sdClient: StreamDeckClient
-  private readonly togglClient: TogglClient
+  public togglId: string
+  public togglClient: TogglClient
 
   public constructor ({
     sdClient,
+    togglId,
     togglClient
   }: {
     sdClient: StreamDeckClient
+    togglId: string
     togglClient: TogglClient
   }) {
     this.sdClient = sdClient
+    this.togglId = togglId
     this.togglClient = togglClient
   }
 
@@ -30,7 +34,10 @@ class ToggleAction {
         })
       } else {
         this.togglClient.startEntry({
-          activity: 'test'
+          activity: payload.settings.entryName,
+          workspaceId: payload.settings.workspaceId,
+          projectId: payload.settings.projectId,
+          billable: payload.settings.billable
         }).then(() => {
           this.sdClient.setState({ state: 0 }) // if start request is successful, set state to ON
         }).catch((err) => {

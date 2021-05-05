@@ -31,7 +31,7 @@ const WorkspaceSelect: React.FC = () => {
           }}
           className='sdpi-item-value select'
         >
-          <option value={undefined}>No project selected</option>
+          <option value=''>No project selected</option>
           {projects.map((project) => (
             <option key={project.id} value={project.id}>
               {project.name}

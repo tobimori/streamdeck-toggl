@@ -1,11 +1,10 @@
 import React from 'react'
-import { WorkspaceSelect } from '..'
 
 const StopInspector: React.FC = () => {
   return (
-    <>
-      <WorkspaceSelect />
-    </>
+    <div className='sdpi-item'>
+      No further settings available.
+    </div>
   )
 }
 
