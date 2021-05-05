@@ -1,8 +1,8 @@
 {
   "Actions": [
     {
-      "Icon": "resources/actionIcon", 
-      "Name": "Toggle", 
+      "Icon": "resources/actionIcon",
+      "Name": "Toggle",
       "States": [
         {
           "Image": "resources/actionImageOn",
@@ -14,42 +14,42 @@
           "TitleAlignment": "bottom",
           "FontSize": "10"
         }
-      ], 
+      ],
       "SupportedInMultiActions": true,
-      "Tooltip": "Toggle your time tracking session with this Stream Deck action.", 
+      "Tooltip": "Toggle your time tracking session with this Stream Deck action.",
       "UUID": "io.moeritz.streamdeck.toggl.toggle"
     },
     {
-      "Icon": "resources/actionIcon", 
-      "Name": "Stop Running Session", 
+      "Icon": "resources/actionIcon",
+      "Name": "Stop Running Session",
       "States": [
         {
           "Image": "resources/actionImageOn",
           "TitleAlignment": "bottom",
           "FontSize": "10"
         }
-      ], 
+      ],
       "SupportedInMultiActions": true,
-      "Tooltip": "Stop your time tracking session, no matter what's you're working on.", 
+      "Tooltip": "Stop your time tracking session, no matter what's you're working on.",
       "UUID": "io.moeritz.streamdeck.toggl.stop"
     },
     {
-      "Icon": "resources/actionIcon", 
-      "Name": "Start New Session", 
+      "Icon": "resources/actionIcon",
+      "Name": "Start New Session",
       "States": [
         {
           "Image": "resources/actionImageOn",
           "TitleAlignment": "bottom",
           "FontSize": "10"
         }
-      ], 
+      ],
       "SupportedInMultiActions": true,
-      "Tooltip": "Start a new time tracking session and stop the currently running one, no matter what's you're working on.", 
+      "Tooltip": "Start a new time tracking session and stop the currently running one, no matter what's you're working on.",
       "UUID": "io.moeritz.streamdeck.toggl.start"
     },
     {
-      "Icon": "resources/actionIcon", 
-      "Name": "Status", 
+      "Icon": "resources/actionIcon",
+      "Name": "Status",
       "States": [
         {
           "Image": "resources/status/actionImage",
@@ -57,32 +57,31 @@
           "FontSize": "10"
         }
       ],
-      "Tooltip": "Displays details of the currently running session.", 
+      "Tooltip": "Displays details of the currently running session.",
       "UUID": "io.moeritz.streamdeck.toggl.status"
     }
-  ], 
+  ],
   "SDKVersion": 2,
-  "Author": "tobimori", 
-  "CodePath": "dist/plugin/index.html", 
-  "Description": "Hassle-free time tracking using the Elgato Stream Deck and Toggl Track.", 
-  "Name": "Toggl Track", 
+  "Author": "tobimori",
+  "CodePath": "dist/plugin/index.html",
+  "Description": "Hassle-free time tracking using the Elgato Stream Deck and Toggl Track.",
+  "Name": "Toggl Track",
   "Category": "Toggl Track",
-  "Icon": "resources/pluginIcon", 
+  "Icon": "resources/pluginIcon",
   "PropertyInspectorPath": "dist/pi/index.html",
-  "URL": "https://moeritz.io", 
-  "Version": "2.0.0",
+  "URL": "https://moeritz.io",
+  "Version": "2.0.0-alpha1",
   "OS": [
     {
-        "Platform": "mac", 
-        "MinimumVersion" : "10.11"
+      "Platform": "mac",
+      "MinimumVersion": "10.11"
     },
     {
-        "Platform": "windows", 
-        "MinimumVersion" : "10"
+      "Platform": "windows",
+      "MinimumVersion": "10"
     }
   ],
-  "Software": 
-    {
-        "MinimumVersion" : "4.9"
-    }
+  "Software": {
+    "MinimumVersion": "4.9"
+  }
 }

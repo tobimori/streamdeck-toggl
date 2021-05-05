@@ -6,9 +6,13 @@
   "license": "MIT",
   "scripts": {
     "dev": "concurrently -n w: yarn:dev:* --prefix-colors \"bgBlue.bold\" -k",
-    "dev:plugin": "parcel watch plugin/index.html -d dist/plugin/  --no-hmr --public-url ./  --log-level 4 --global connectElgatoStreamDeckSocket",
-    "dev:pi": "parcel watch pi/index.html -d dist/pi/  --public-url ./ --log-level 4  --no-hmr --global connectElgatoStreamDeckSocket",
-    "dev:setup": "parcel watch setup/index.html -d dist/setup/  --public-url ./ --log-level 4  --no-hmr --global connectElgatoStreamDeckSocket"
+    "dev:plugin": "parcel watch plugin/index.html -d dist/plugin/ --no-hmr --public-url ./ --log-level 4 --global connectElgatoStreamDeckSocket",
+    "dev:pi": "parcel watch pi/index.html -d dist/pi/  --public-url ./ --log-level 4 --no-hmr --global connectElgatoStreamDeckSocket",
+    "dev:setup": "parcel watch setup/index.html -d dist/setup/  --public-url ./ --log-level 4 --no-hmr",
+    "build": "concurrently -n w: yarn:build:* --prefix-colors \"bgBlue.bold\"",
+    "build:plugin": "parcel build plugin/index.html -d dist/plugin/ --public-url ./ --global connectElgatoStreamDeckSocket",
+    "build:pi": "parcel build pi/index.html -d dist/pi/  --public-url ./ --global connectElgatoStreamDeckSocket",
+    "build:setup": "parcel build setup/index.html -d dist/setup/  --public-url ./"
   },
   "dependencies": {
     "react": "^17.0.2",
