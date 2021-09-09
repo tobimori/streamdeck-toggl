@@ -31,7 +31,7 @@ ___
 
 ## ✏️ Setup
 
-Just search for the Action "Toggl" within the Stream Deck app and install it. There is a button called "Toggl" available in section "Custom".
+Just search for the Action "Toggl" within the Stream Deck app and install it. There is a button called "Toggl" available in section "Time Tracker".
 
 ![PropertyInspector](resources/readme/PropertyInspector.png)
 
