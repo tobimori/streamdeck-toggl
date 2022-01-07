@@ -45,7 +45,7 @@ function connectElgatoStreamDeckSocket(inPort, inPluginUUID, inRegisterEvent, in
 
 
 function removeButton(context) {
-  currentButtons.delete(context)
+  return currentButtons.delete(context)
 }
 
 function addButton(context, settings) {
