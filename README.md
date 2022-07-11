@@ -1,3 +1,6 @@
+> ⏸ Development ended - open to handover project
+> Unfortunately, I am lacking time and energy to actively uphold development of this plugin. It still works with its bugs and quirks, but I will archive the plugin as-is for the time being. If anyone would like to take over and continue the development of this plugin, I'd be very happy - please get in touch.
+
 <p align="center">
   <a href="#">
     <img src="resources/readme/GitHubBanner.png" alt="Toggl Track + Elgato Stream Deck" />
