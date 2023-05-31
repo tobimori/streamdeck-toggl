@@ -51,6 +51,12 @@ Just search for the Action "Toggl" within the Stream Deck app and install it. Th
 
 Just press any Toggl Button to start tracking time. The button should indicate tracking by turning red and showing the current tracking time (if no *Title* is set). The status of the button is defined by workspace, project and entry name. If you setup two identical buttons (even on different Stream Deck profiles), both button indicate the same. If you start or stop your timer using the Toggl app (web, desktop, mobile) Toggl for Stream Deck will follow by changing the status.
 
+## Variable Entry Names
+
+You can have dynamic bits of yoru Entry Name by using the template `{{prompt}}` (no spaces).
+
+A prompt will appear to ask what it should be replaced with. Due to a limitation of the Stream Deck, the prompt may appear behind other apps.
+
 ## 📞 Help
 
 Feel free to ask your questions on [my Discord Server](https://discord.gg/YWy3UAy). Please use GitHub Issues for reporting bugs and requesting new features.
