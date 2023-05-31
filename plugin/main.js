@@ -133,6 +133,8 @@ async function toggle(context, settings) {
     } else {
       //Just start the new one, old one will stop, it's toggl.
       startEntry(apiToken, activity, workspaceId, projectId, billableToggle).then(v=>refreshButtons())
+      // Let's not wait until the next polling to disable the old button
+      refreshButtons();
     }
   })
 }
