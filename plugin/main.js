@@ -140,6 +140,10 @@ async function toggle(context, settings) {
 // Toggl API Helpers
 
 function startEntry(apiToken = isRequired(), activity = 'Time Entry created by Toggl for Stream Deck', workspaceId = 0, projectId = 0, billableToggle = false) {
+  if (activity.includes('{{prompt}}')) {
+    let promptVal = prompt('What entry name would you like?');
+    activity = activity.replace('{{prompt}}', promptVal);
+  }
   return fetch(
     `${togglBaseUrl}/time_entries/start`, {
     method: 'POST',
