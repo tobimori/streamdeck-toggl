@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars, no-undef */
-const togglBaseUrl = 'https://api.track.toggl.com/api/v8'
+const togglBaseUrl = 'https://api.track.toggl.com/api/v9'
 
 let websocket = null
 let currentButtons = new Map()
@@ -61,7 +61,7 @@ async function initPolling() {
 
   while (currentButtons.size > 0) { // eslint-disable-line no-unmodified-loop-condition
     refreshButtons()
-     
+
     //nothing special about 5s, just a random choice
     await new Promise(r => setTimeout(r, 5000));
   }
@@ -70,23 +70,23 @@ async function initPolling() {
 }
 
 function refreshButtons() {
-  
+
   //Get the list of unique apiTokens
   var tokens = new Set([...currentButtons.values()].map(s=>s.apiToken))
-  
+
   tokens.forEach(apiToken => {
-    
+
     //Get the current entry for this token
     getCurrentEntry(apiToken).then(entryData => {
-    
+
       //Loop over all the buttons and update as appropriate
       currentButtons.forEach((settings, context) => {
         if (apiToken != settings.apiToken) //not one of "our" buttons
           return //We're in a forEach, this is effectively a 'continue'
-        
-        if (entryData //Does button match the active timer? 
-            && entryData.wid == settings.workspaceId 
-            && entryData.pid == settings.projectId 
+
+        if (entryData //Does button match the active timer?
+            && entryData.wid == settings.workspaceId
+            && entryData.pid == settings.projectId
             && entryData.description == settings.activity) {
           setState(context, 0)
           setTitle(context, `${formatElapsed(entryData.duration)}\n\n\n${settings.label}`)
@@ -129,7 +129,7 @@ async function toggle(context, settings) {
       startEntry(apiToken, activity, workspaceId, projectId, billableToggle).then(v=>refreshButtons())
     } else if (entryData.wid == workspaceId && entryData.pid == projectId && entryData.description == activity) {
       //The one running is "this one" -- toggle to stop
-      stopEntry(apiToken, entryData.id).then(v=>refreshButtons())
+      stopEntry(apiToken, entryData.id, workspaceId).then(v=>refreshButtons())
     } else {
       //Just start the new one, old one will stop, it's toggl.
       startEntry(apiToken, activity, workspaceId, projectId, billableToggle).then(v=>refreshButtons())
@@ -141,7 +141,7 @@ async function toggle(context, settings) {
 
 function startEntry(apiToken = isRequired(), activity = 'Time Entry created by Toggl for Stream Deck', workspaceId = 0, projectId = 0, billableToggle = false) {
   return fetch(
-    `${togglBaseUrl}/time_entries/start`, {
+    `${togglBaseUrl}/workspaces/${workspaceId}/time_entries`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -159,10 +159,10 @@ function startEntry(apiToken = isRequired(), activity = 'Time Entry created by T
   })
 }
 
-function stopEntry(apiToken = isRequired(), entryId = isRequired()) {
+function stopEntry(apiToken = isRequired(), entryId = isRequired(), workspaceId = 0) {
   return fetch(
-    `${togglBaseUrl}/time_entries/${entryId}/stop`, {
-    method: 'PUT',
+    `${togglBaseUrl}/workspaces/${workspaceId}/time_entries/${entryId}/stop`, {
+    method: 'PATCH',
     headers: {
       Authorization: `Basic ${btoa(`${apiToken}:api_token`)}`
     }
@@ -171,7 +171,7 @@ function stopEntry(apiToken = isRequired(), entryId = isRequired()) {
 
 async function getCurrentEntry(apiToken = isRequired()) {
   const response = await fetch(
-    `${togglBaseUrl}/time_entries/current`, {
+    `${togglBaseUrl}/me/time_entries/current`, {
     method: 'GET',
     headers: {
       Authorization: `Basic ${btoa(`${apiToken}:api_token`)}`
@@ -216,4 +216,3 @@ function showAlert(context = isRequired()) {
 const isRequired = () => {
   throw new Error('Missing required params')
 }
-
