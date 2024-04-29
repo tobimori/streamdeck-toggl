@@ -140,6 +140,7 @@ async function toggle(context, settings) {
 // Toggl API Helpers
 
 function startEntry(apiToken = isRequired(), activity = 'Time Entry created by Toggl for Stream Deck', workspaceId = 0, projectId = 0, billableToggle = false) {
+  const date = new Date();
   return fetch(
     `${togglBaseUrl}/workspaces/${workspaceId}/time_entries`, {
     method: 'POST',
@@ -148,13 +149,13 @@ function startEntry(apiToken = isRequired(), activity = 'Time Entry created by T
       Authorization: `Basic ${btoa(`${apiToken}:api_token`)}`
     },
     body: JSON.stringify({
-      time_entry: {
-        description: activity,
-        wid: workspaceId,
-        pid: projectId,
-	billable: billableToggle,
-        created_with: 'Stream Deck'
-      }
+      start: date.toISOString().substring(0,19) + "Z",
+      description: activity,
+      wid: Number(workspaceId),
+      pid: Number(projectId),
+      billable: billableToggle,
+      created_with: 'Stream Deck',
+      duration: -1
     })
   })
 }
@@ -178,7 +179,7 @@ async function getCurrentEntry(apiToken = isRequired()) {
     }
   })
   const data = await response.json()
-  return data.data
+  return data
 }
 
 // Set Button State (for Polling)
