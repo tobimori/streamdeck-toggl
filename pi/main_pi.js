@@ -146,7 +146,7 @@ async function getProjects (apiToken, workspaceId) {
 
 async function getWorkspaces (apiToken) {
   const response = await fetch(
-    `${togglBaseUrl}/workspaces`, {
+    `${togglBaseUrl}/me/workspaces`, {
       method: 'GET',
       headers: {
         Authorization: `Basic ${btoa(`${apiToken}:api_token`)}`
