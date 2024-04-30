@@ -89,7 +89,7 @@ function refreshButtons() {
             && entryData.pid == settings.projectId
             && entryData.description == settings.activity) {
           setState(context, 0)
-          setTitle(context, `${formatElapsed(entryData.duration)}\n\n\n${settings.label}`)
+          setTitle(context, `${formatElapsed(entryData.start)}\n\n\n${settings.label}`)
         } else { //if not, make sure it's 'off'
           setState(context, 1)
           setTitle(context, settings.label)
@@ -99,9 +99,9 @@ function refreshButtons() {
   })
 }
 
-function formatElapsed(elapsedFromToggl)
+function formatElapsed(startFromToggl)
 {
-  const elapsed = Math.floor(Date.now()/1000) + elapsedFromToggl
+  const elapsed = Math.floor(Date.now()/1000) - Math.floor(new Date(startFromToggl).getTime()/1000)
   return formatSeconds(elapsed)
 }
 
