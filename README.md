@@ -1,9 +1,10 @@
 ## ⚠️ API V8 Depreciation 
 You may have received an email from toggl, stating you are using the v8 Api, which this plugin previously used. As per <https://github.com/tobimori/streamdeck-toggl/issues/41>, this issue has been fixed. Unfortunatley, these changes cannot be published to the elgato store. To workaround this issue conduct the following:
 
-1. Download the zipped code from this repository
-2. navigate to `%appdata%\Elgato\StreamDeck\Plugins\io.moeritz.streamdeck.toggl.sdPlugin`
-3. Delete all the contents in this directory, and replace with the downloaded code from this repository.
+* Download the zipped code from this repository
+  1. *Windows* - navigate to `%appdata%\Elgato\StreamDeck\Plugins\io.moeritz.streamdeck.toggl.sdPlugin`
+  2. *MacOS* - navigate to `~/Library/Application Support/com.elgato.StreamDeck/Plugins/io.moeritz.streamdeck.toggl.sdPlugin` 
+* Delete all the contents in this directory, and replace with the downloaded code from this repository.
 
 
 > ## **⏸ Development ended - open to handover project**
