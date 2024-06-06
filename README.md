@@ -1,12 +1,5 @@
-## ⚠️ API V8 Depreciation 
-You may have received an email from toggl, stating you are using the v8 Api, which this plugin previously used. As per <https://github.com/tobimori/streamdeck-toggl/issues/41>, this issue has been fixed. Unfortunatley, these changes cannot be published to the elgato store. To workaround this issue conduct the following:
-
-* Download the zip file from [the newest release](https://github.com/tobimori/streamdeck-toggl/releases/latest).
-* Extract it and double-click the .streamDeckPlugin file to install it.
-
-> ## **⏸ Development ended - open to handover project**
-> 
-> Unfortunately, I am lacking time and energy to actively uphold development of this plugin. It still works with its bugs and quirks, but I will archive the plugin as-is for the time being. If anyone would like to take over and continue the development of this plugin, I'd be very happy - please get in touch.
+# Unmmaintained!
+The kind folks from @blueshiftone started [a fork, which you can find here](https://github.com/blueshiftone/streamdeck-toggl). Please use this version instead!
 
 <p align="center">
   <a href="#">
